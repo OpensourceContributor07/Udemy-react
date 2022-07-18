@@ -5,6 +5,14 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
 
+  function deleteitem(id) {
+    setItems((prevValu) => {
+      return prevValu.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   function handleChange(event) {
     const newValue = event.target.value;
     setInputText(newValue);
@@ -30,8 +38,13 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((todoItem) => (
-            <Listitem todoItem={todoItem} />
+          {items.map((todoItem, index) => (
+            <Listitem
+              key={index}
+              id={index}
+              todoItem={todoItem}
+              onChecked={deleteitem}
+            />
           ))}
         </ul>
       </div>

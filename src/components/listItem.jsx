@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 
 function Listitem(props) {
-  const [click, setclick] = useState(false);
   return (
     <div
       onClick={() => {
-        setclick((prev) => {
-          return !prev;
-        });
+        props.onChecked(props.id);
       }}
     >
-      <li style={{ textDecoration: click ? "line-through" : "none" }}>
-        {props.todoItem}
-      </li>
+      {/* //onClick={props.onChecked(props.id)} very bad idea it's just calling rather than passing the value */}
+      <li>{props.todoItem}</li>
     </div>
   );
 }
